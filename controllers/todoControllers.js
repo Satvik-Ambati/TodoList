@@ -18,7 +18,7 @@ app.get('/todo',function(req,res){
   //get data from mongodb
   Todo.find({}, function(err, data){
     if (err) throw err;
-    res.render('todo', {todos:data});
+    res.json(data);
   });
 });
 

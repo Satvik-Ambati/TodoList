@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  one:
+  build:
     docker:
       - image: circleci/node:4.8.2
       
@@ -21,7 +21,15 @@ jobs:
             - ./node_modules    	
       - run:
           name: start connection
-          command: node app && npm test
+          command: node app
+  test:
+    docker:
+      - image: circleci/node:4.8.2
+    steps:
+      - checkout
+      - run:
+          name: test
+          command: npm test  
 
   # two:
   #   docker:

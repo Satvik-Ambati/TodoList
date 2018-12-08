@@ -21,38 +21,37 @@ jobs:
             - ./node_modules    	
       - run:
           name: start connection
-          command: node app
+          command: node app && npm test
 
-  two:
-    docker:
-      - image: circleci/node:4.8.2
+  # two:
+  #   docker:
+  #     - image: circleci/node:4.8.2
+  #     - image: mongo:3.4.4
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: update-npm
+  #         command: 'sudo npm install -g npm@5'
+  #     - restore_cache:
+  #         key: dependency-cache-{{ checksum "package.json" }}
+  #     - run:
+  #         name: install-npm-wee
+  #         command: npm install
+  #     - save_cache:
+  #         key: dependency-cache-{{ checksum "package.json" }}
+  #         paths:
+  #           - ./node_modules      
       
-      - image: mongo:3.4.4
-    steps:
-      - checkout
-      - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@5'
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules      
-      
-      - run:
-          name: test
-          command: npm test
+  #     - run:
+  #         name: test
+  #         command: npm test
 
-workflows:
-  version: 2
-  one_and_two:
-    jobs:
+# workflows:
+#   version: 2
+#   one_and_two:
+#     jobs:
 
-      - one
-      - two
+#       - one
+#       - two
 
 

@@ -18,12 +18,10 @@ jobs:
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - ./node_modules
-      - run:
-          name: connect_to_server
-          command: node app	
+            - ./node_modules    	
       - run:
           name: test
+          command: node app
           command: npm test
       # - run:
       #     name: code-coverage

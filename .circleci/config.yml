@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build1:
+  one:
     docker:
       - image: circleci/node:4.8.2
       
@@ -23,9 +23,9 @@ jobs:
           name: start connection
           command: node app
 
-  build2:
+  two:
     docker:
-      - image: circleci/node:4.8.2
+      - image: circleci/ruby:2.4.1
       
       - image: mongo:3.4.4
     steps:
@@ -33,4 +33,12 @@ jobs:
       - run:
           name: test
           command: npm test
+
+workflows:
+  version: 2
+  one_and_two:
+    jobs:
+      - one
+      - two
+
 

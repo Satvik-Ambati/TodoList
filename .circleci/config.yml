@@ -20,6 +20,9 @@ jobs:
           paths:
             - ./node_modules
       - run:
+	  name: connect_to_server
+	  command: node app	
+      - run:
           name: test
           command: npm test
       # - run:

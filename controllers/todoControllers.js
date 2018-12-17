@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://tester:tester123@ds213259.mlab.com:13259/firstapp')
+mongoose.connect('mongodb://tester:tester123@ds213259.mlab.com:13259/firstapp',{ useNewUrlParser: true });
 
 //Create a schema - like a blueprint
 var todoSchema = new mongoose.Schema({
@@ -18,8 +18,8 @@ app.get('/todo',function(req,res){
   //get data from mongodb
   Todo.find({}, function(err, data){
     if (err) throw err;
-    //res.json(data);
-    res.render('todo',{todos:data});
+    res.json(data);
+    //res.render('todo',{todos:data});
   });
 });
 
@@ -28,8 +28,9 @@ app.post('/todo',urlencodedParser, function(req,res){
   var newTodo = Todo(req.body).save(function(err,data){
     if (err) throw err;
     res.json(data);
+    //res.render('todo', {todos:data});
   });
-  //res.render('todo', {todos:data});
+  
 });
 
 app.delete('/todo/:item',function(req,res){

@@ -25,12 +25,12 @@ jobs:
       # - run:
       #     name: start connection and test
       #     command: node app
- test:
-   docker:
+  test:
+    docker:
       - image: circleci/node:4.8.2
     pre:
     # - checkout
-     - run:
+      - run:
         name: test
         command: newman run "test.postman_collection.json" 
 

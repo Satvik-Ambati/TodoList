@@ -1,7 +1,7 @@
 var express = require('express');
 var todoController = require('./controllers/todoControllers');
 var app = express();
-//var newman = require('newman'); // require newman in your project
+var newman = require('newman'); // require newman in your project
 
 //set up template engine
 app.set('view engine','ejs');

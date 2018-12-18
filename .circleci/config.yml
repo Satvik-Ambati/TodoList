@@ -2,8 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:4.8.2
-      
+      - image: circleci/node:4.8.2 
       - image: mongo:3.4.4
     steps:
       - checkout
@@ -22,9 +21,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules      
-     - run:
-        name: start connection and test
-        command: node app
+      - run:
+          name: start connection and test
+          command: node app
   # test:
   #   docker:
   #     - image: circleci/node:4.8.2

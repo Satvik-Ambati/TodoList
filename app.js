@@ -1,5 +1,5 @@
 var express = require('express');
-var newman = require('newman'); // require newman in your project
+//var newman = require('newman'); // require newman in your project
 var todoController = require('./controllers/todoControllers');
 var app = express();
 
@@ -19,11 +19,11 @@ console.log('You are listening to port 3000');
 
 
 
-//call newman.run to pass `options` object and wait for callback
-newman.run({
-    collection: require('./test.postman_collection.json'),
-    reporters: 'cli'
-}, function (err) {
-	if (err) { throw err; }
-    console.log('collection run complete!');
-});
+
+// newman.run({
+//     collection: require('./test.postman_collection.json'),
+//     reporters: 'cli'
+// }, function (err) {
+// 	if (err) { throw err; }
+//     console.log('collection run complete!');
+// });

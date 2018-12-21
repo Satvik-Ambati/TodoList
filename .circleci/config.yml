@@ -60,11 +60,11 @@ jobs:
   #         name: test
   #         command: npm test
 
-workflows:
-  version: 2
-  one_and_two:
-    jobs:
-      - build
-      - test
+# workflows:
+#   version: 2
+#   one_and_two:
+#     jobs:
+#       - build
+#       - test
 
 

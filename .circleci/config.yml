@@ -29,6 +29,7 @@ jobs:
               sudo pip install awscli
               aws --version
               aws configure < aws.txt
+              echo "${AWS_ACCESS_KEY_ID}"
         
       # - run:
       #     name: start connection and test

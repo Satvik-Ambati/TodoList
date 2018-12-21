@@ -24,7 +24,11 @@ jobs:
       - run:
           name: Install awscli
           command: |
-              pip install --user virtualenv        
+              sudo apt-get update
+              sudo apt-get install -y python-pip python-dev
+              sudo pip install awscli
+              aws --version
+        
       - run:
           name: start connection and test
           command: node app

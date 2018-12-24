@@ -30,6 +30,17 @@ jobs:
               aws --version
               aws configure < aws.txt
               echo "${AWS_ACCESS_KEY_ID}"
+      - run:
+          name: Deployment
+          command: |
+              aws deploy create-application --application-name CodeDeployGitHubDemo-App
+              aws deploy create-deployment-group --application-name CodeDeployGitHubDemo-App --ec2-tag-filters Key=Name,Type=KEY_AND_VALUE,Value=CodeDeployDemo  --deployment-group-name CodeDeployGitHubDemo-DepGrp --service-role-arn arn:aws:iam::358169576441:role/CodeDeployServiceRole
+
+
+
+            #  aws deploy push
+            #  aws deploy create-deployment
+            #  aws deploy get-deployment
         
       # - run:
       #     name: start connection and test

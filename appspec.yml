@@ -87,29 +87,27 @@ hooks:
 #   revision's file bundle.
  
 
-  # ApplicationStop:
-  #   - location: scripts/stop.sh
-  #     timeout: 300
-  #     runas: root
+  ApplicationStop:
+    - location: scripts/stop.sh
+      runas: root
 # During the BeforeInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
-  # BeforeInstall:
-  #   - location: scripts/install.sh 
-  #     timeout: 300
-  #     runas: root
+  BeforeInstall:
+    - location: scripts/install.sh 
+      runas: root
   #   - location: scripts/start.sh
   #     timeout: 300
   #     runas: root  
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   AfterInstall:
-    - location: scripts/stop.sh     
+    - location: scripts/start.sh   
       runas: root
 # # During the ApplicationStart deployment lifecycle event, run the commands 
 # #   in the script specified in "location".
-  ApplicationStart:
-    - location: scripts/start.sh
-      runas: root
+  # ApplicationStart:
+  #   - location: scripts/start.sh
+  #     runas: root
 
 #     - location:     
 #       timeout: 

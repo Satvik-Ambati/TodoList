@@ -9,6 +9,7 @@
 #yum load-transaction /tmp/yum_save_tx.2018-12-26.18-41.fvQbtl.yumtx
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+. ~/.nvm/nvm.sh
 nvm --version
 
 nvm install node

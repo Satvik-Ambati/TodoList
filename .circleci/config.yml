@@ -61,6 +61,12 @@ jobs:
       - run:
           name: Copying bundle to S3
           command: aws s3 cp --sse AES256 "/tmp/first.zip" "s3://todolist-bucket-demo/first.zip"
+      - run:
+          name: Limiting Deploy Revisions per Bucket/Key
+          command: |
+              aws s3 ls "s3://todolist-bucket-demo"
+              aws s3 rm "s3://todolist-bucket-demo/first.zip"
+
 
       # - run:
       #     name: Deployment to S3 bucket

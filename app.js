@@ -1,5 +1,5 @@
 var express = require('express');
-//var newman = require('newman'); // require newman in your project
+var newman = require('newman'); // require newman in your project
 var todoController = require('./controllers/todoControllers');
 var app = express();
 

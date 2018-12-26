@@ -9,6 +9,6 @@ sudo yum install nodejs npm --enablerepo=epel
 #yum load-transaction /tmp/yum_save_tx.2018-12-26.18-41.fvQbtl.yumtx
 
 $PATH
-whereis npm
+whereis npm 
 #sudo apt-get install npm
 sudo npm install forever -g

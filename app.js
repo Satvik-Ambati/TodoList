@@ -13,17 +13,28 @@ app.use(express.static('./public'));
 todoController(app);
 
 //listen to port
-app.listen(3000);
+
+httpServer = require('http').createServer(app);
+
+httpServer.listen('3000');
+// Then close the server when done...
+//httpServer.timeout=10000;
+
+//var server = app.listen(3000);
+
 console.log('You are listening to port 3000');
 
 
 
 
 
-// newman.run({
-//     collection: require('./test.postman_collection.json'),
-//     reporters: 'cli'
-// }, function (err) {
-// 	if (err) { throw err; }
-//     console.log('collection run complete!');
-// });
+newman.run({
+    collection: require('./test.postman_collection.json'),
+    reporters: 'cli'
+}, function (err) {
+	if (err) { throw err; }
+    console.log('collection run complete!');
+});
+
+
+//httpServer.close();

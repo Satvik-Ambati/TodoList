@@ -20,5 +20,6 @@ npm --version
 
 $PATH
 whereis npm 
+whereis node
 #sudo apt-get install npm
 sudo /root/.nvm/versions/node/v11.6.0/bin/npm install forever -g

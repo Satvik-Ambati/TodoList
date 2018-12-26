@@ -23,15 +23,25 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules    
-      # - run:
-      #     name: Install awscli
-      #     command: |
-      #         sudo apt-get update
-      #         sudo apt-get install -y python-pip python-dev
-      #         sudo pip install awscli
-      #         aws --version
-      #         aws configure < aws.txt
-      #         echo "${AWS_ACCESS_KEY_ID}"
+      - run:
+          name: start connection and test
+          command: |
+              set -e
+              node app
+
+      - run:
+          name: Install awscli
+          command: |
+              sudo apt-get update
+              sudo apt-get install -y python-pip python-dev
+              sudo pip install awscli
+              aws --version
+              aws configure < aws.txt
+              echo "${AWS_ACCESS_KEY_ID}"
+      - run:
+          name: Checking application
+          command: aws deploy get-application --application-name CodeDeployGithubDemo-App
+
       # - run:
       #     name: CodeDeploy
       #     command: |
@@ -39,11 +49,6 @@ jobs:
       #         echo $COMMIT_ID
       
 
-      - run:
-          name: start connection and test
-          command: |
-              set -e
-              node app
   # test:
   #   docker:
   #     - image: circleci/node:4.8.2

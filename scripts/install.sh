@@ -31,8 +31,8 @@ yum -y update
 yum -y install default-jre ImageMagick
 
 sudo curl -sL https://rpm.nodesource.com/setup_10.x | sudo -E bash -
-yum -y install nodejs
-
+#yum -y install nodejs
+sudo yum -y install nodejs npm --enablerepo=epel
 node --version
 npm --version
 

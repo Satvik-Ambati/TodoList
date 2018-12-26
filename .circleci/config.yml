@@ -39,17 +39,17 @@ jobs:
       #         echo $COMMIT_ID
       
 
+      # - run:
+      #     name: start connection and test
+      #     command: node app
+  test:
+    docker:
+      - image: circleci/node:4.8.2
+    steps:
+      - checkout
       - run:
-          name: start connection and test
-          command: node app
-  # test:
-  #   docker:
-  #     - image: circleci/node:4.8.2
-  #   steps:
-  #   # - checkout
-  #     - run:
-  #       name: test
-  #       command: newman run "test.postman_collection.json" 
+        name: test
+        command: node app
 
 
 

@@ -17,9 +17,13 @@ jobs:
       - run:
           name: install-npm-wee
           command: npm install
-      # - run:
-      #     name: install newman
-      #     command: npm install -g newman     
+      - run:
+          name: install newman
+          command: npm install -g newman     
+      - run:
+          name: install forever
+          command: npm install -g forever     
+
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:

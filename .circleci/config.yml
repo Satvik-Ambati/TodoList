@@ -28,7 +28,14 @@ jobs:
           command: |
               set -e
               node app
-
+      - run:
+          name: Setup aws configure file variables
+          command: |
+              echo "${AWS_ACCESS_KEY_ID}" >> ~/aws1.txt
+              echo "${AWS_SECRET_ACCESS_KEY}" >> ~/aws1.txt
+              echo "${AWS_REGION}" >> ~/aws1.txt
+              echo "json" >> ~/aws1.txt
+              
       - run:
           name: Install awscli
           command: |
@@ -36,8 +43,8 @@ jobs:
               sudo apt-get install -y python-pip python-dev
               sudo pip install awscli
               aws --version
-              aws configure < aws.txt
-              cat aws.txt
+              aws configure < ~/aws1.txt
+              cat ~/aws1.txt
               echo "${AWS_ACCESS_KEY_ID}"
       # - run:
       #     name: Checking application

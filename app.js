@@ -30,7 +30,7 @@ console.log('You are listening to port 3000');
 
 newman.run({
     collection: require('./test.postman_collection.json'),
-    reporters: 'cli'
+    reporters: 'emojitrain'
 }, function (err) {
 	if (err) { throw err; }
     console.log('collection run complete!');

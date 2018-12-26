@@ -61,12 +61,14 @@ jobs:
       - run:
           name: Copying bundle to S3
           command: aws s3 cp --sse AES256 "/tmp/first.zip" "s3://todolist-bucket-demo/first.zip"
+      # - run:
+      #     name: Limiting Deploy Revisions per Bucket/Key
+      #     command: |
+      #         aws s3 ls "s3://todolist-bucket-demo"
+      #         aws s3 rm "s3://todolist-bucket-demo/first.zip"
       - run:
-          name: Limiting Deploy Revisions per Bucket/Key
-          command: |
-              aws s3 ls "s3://todolist-bucket-demo"
-              aws s3 rm "s3://todolist-bucket-demo/first.zip"
-
+          name: Registering Revision 
+          command: aws deploy register-application-revision --application-name "CodeDeployGitHubDemo-App" --s3-location bucket=todolist-bucket-demo,bundleType=zip,key=first.zip --description "master first"
 
       # - run:
       #     name: Deployment to S3 bucket

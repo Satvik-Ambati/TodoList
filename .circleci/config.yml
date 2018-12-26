@@ -50,6 +50,9 @@ jobs:
       - run:
           name: test
           command: node app
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
 
 
 
@@ -80,9 +83,12 @@ jobs:
 
 workflows:
   version: 2
-  one_and_two:
+  build_and_test:
     jobs:
       - build
-      - test
+      - test:
+          requires:
+            - build
+          
 
 

@@ -48,8 +48,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: test
-        command: node app
+          name: test
+          command: node app
 
 
 

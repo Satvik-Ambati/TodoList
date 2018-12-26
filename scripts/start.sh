@@ -1,2 +1,2 @@
 #!/bin/bash
-nodejs app
+forever start /usr/local/projects/source/app.js

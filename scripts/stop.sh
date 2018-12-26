@@ -1,2 +1,2 @@
 #!/bin/bash
-SIGINT
+forever stopall

@@ -24,7 +24,7 @@ os: linux
 #   may cause associated deployments to fail.
 files:
   - source: /
-    destination: /var/www/html
+    destination: /usr/local/projects/source
 # For deployments to Amazon Linux, Ubuntu Server, or RHEL instances,
 #   you can specify a "permissions" 
 #   section here that describes special permissions to apply to the files 
@@ -59,7 +59,7 @@ files:
 #   may cause associated deployments to fail.
 
 
-#hooks:
+hooks:
 
 
 # For each deployment lifecycle event, specify multiple "location" entries 
@@ -102,13 +102,11 @@ files:
   #     runas: root  
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
-#   AfterInstall:
-#     - location:     
-#       timeout: 
-#       runas:
-#     - location: 
-#       timeout:
-#       runas:
+  AfterInstall:
+    - location: scripts/stop.sh     
+      runas: root
+    - location: scripts/start.sh
+      runas: root
 # # During the ApplicationStart deployment lifecycle event, run the commands 
 # #   in the script specified in "location".
 #   ApplicationStart:

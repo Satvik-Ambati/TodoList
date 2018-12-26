@@ -23,4 +23,4 @@ whereis npm
 whereis node
 cp /root/.nvm/versions/node/v11.6.0/bin/npm /usr/bin/env
 #sudo apt-get install npm
-sudo /root/.nvm/versions/node/v11.6.0/bin/npm install forever -g
+sudo npm install forever -g

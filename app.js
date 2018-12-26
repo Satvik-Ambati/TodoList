@@ -34,7 +34,7 @@ newman.run({
 }, function (err) {
 	if (err) { throw err; }
     console.log('collection run complete!');
-    //process.exit();
+    process.exit();
 });
 
 

@@ -38,8 +38,9 @@
 
 # whereis node
 # whereis npm
-sudo add-apt-repository ppa:chris-lea/node.js-devel
-sudo apt-get update
-sudo apt-get install nodejs
 
-sudo npm install -g forever
+# curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+
+
+#  npm install -g forever
+echo "Hi"

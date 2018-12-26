@@ -39,52 +39,54 @@ jobs:
       #         echo $COMMIT_ID
       
 
-      # - run:
-      #     name: start connection and test
-      #     command: node app
-  test:
-    docker:
-      - image: circleci/node:4.8.2
-    steps:
-      - checkout
       - run:
-          name: update-npm
+          name: start connection and test
           command: |
-              sudo npm install -g n
-              sudo n stable
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      # - run:
-      #     name: install newman
-      #     command: npm install -g newman     
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules    
+              node app
+              echo $?
+  # test:
+  #   docker:
+  #     - image: circleci/node:4.8.2
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: update-npm
+  #         command: |
+  #             sudo npm install -g n
+  #             sudo n stable
+  #     - restore_cache:
+  #         key: dependency-cache-{{ checksum "package.json" }}
+  #     - run:
+  #         name: install-npm-wee
+  #         command: npm install
+  #     # - run:
+  #     #     name: install newman
+  #     #     command: npm install -g newman     
+  #     - save_cache:
+  #         key: dependency-cache-{{ checksum "package.json" }}
+  #         paths:
+  #           - ./node_modules    
       
-      - run:
-          name: test
-          command: node app
-      - store_artifacts:
-          path: test-results.xml
-          prefix: tests
+  #     - run:
+  #         name: test
+  #         command: node app
+      # - store_artifacts:
+      #     path: test-results.xml
+      #     prefix: tests
 
 
  #     - run:
   #         name: test
   #         command: npm test
 
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
+# workflows:
+#   version: 2
+#   build_and_test:
+#     jobs:
+#       - build
+#       - test:
+#           requires:
+#             - build
 
 
 

@@ -56,8 +56,15 @@ jobs:
           name: Checking Deployment Group
           command: aws deploy get-deployment-group --application-name CodeDeployGitHubDemo-App --deployment-group-name CodeDeployGitHubDemo-DepGrp     
       - run:
-          name: Deployment to S3 bucket
-          command: aws s3 sync . s3://todolist-bucket-demo --delete      
+          name: Compressing Source Contents
+          command: cd "/home/circleci/project" && zip -rq "/tmp/first.zip"
+      - run:
+          name: Copying bundle to S3
+          command: aws s3 cp --sse "/tmp/first/zip" "s3://todolist-bucket-demo/first.zip"
+
+      # - run:
+      #     name: Deployment to S3 bucket
+      #     command: aws s3 sync . s3://todolist-bucket-demo --delete      
 
 
 

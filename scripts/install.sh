@@ -25,18 +25,18 @@
 #sudo apt-get install npm
 
 
-set -e
-yum -y update
-# install general libraries like Java or ImageMagick
-yum -y install default-jre ImageMagick
+# set -e
+# yum -y update
+# # install general libraries like Java or ImageMagick
+# yum -y install default-jre ImageMagick
 
-sudo curl -sL https://rpm.nodesource.com/setup_10.x | sudo -E bash -
-#yum -y install nodejs
-sudo yum -y install nodejs npm --enablerepo=epel
-node --version
-npm --version
+# sudo curl -sL https://rpm.nodesource.com/setup_10.x | sudo -E bash -
+# #yum -y install nodejs
+# sudo yum -y install nodejs npm --enablerepo=epel
+# node --version
+# npm --version
 
-whereis node
-whereis npm
+# whereis node
+# whereis npm
 
 sudo npm install -g forever

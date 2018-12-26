@@ -1,2 +1,2 @@
 #!/bin/bash
-node app
+nodejs app

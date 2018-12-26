@@ -59,7 +59,7 @@ files:
 #   may cause associated deployments to fail.
 
 
-# hooks:
+#hooks:
 
 
 # For each deployment lifecycle event, specify multiple "location" entries 

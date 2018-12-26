@@ -40,8 +40,14 @@ jobs:
               echo "${AWS_ACCESS_KEY_ID}"
       - run:
           name: Checking application
-          command: aws deploy get-application --application-name CodeDeployGithubDemo-App
-
+          command: aws deploy get-application --application-name CodeDeployGitHubDemo-App
+      - run:
+          name: Checking Deployment Config
+          command: aws deploy get-deployment-config --deployment-config-name CodeDeployDefault.AllAtOnce
+      - run:
+          name: Checking Deployment Group
+          command: aws deploy get-deployment-group --application-name CodeDeployGitHubDemo-App --deployment-group-name CodeDeployGitHubDemo-DepGrp     
+      
       # - run:
       #     name: CodeDeploy
       #     command: |

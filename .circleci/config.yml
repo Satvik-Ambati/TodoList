@@ -34,7 +34,8 @@ jobs:
           name: CodeDeploy
           command: |
               echo 'export COMMIT_ID=$(git rev-parse HEAD)' >>$BASH_ENV
-              aws deploy create-deployment   --application-name CodeDeployGitHubDemo-App   --deployment-config-name CodeDeployDefault.OneAtATime   --deployment-group-name CodeDeployGitHubDemo-DepGrp   --description "My GitHub deployment demo"   --github-location repository=Satvik-Ambati/CodeDeployAWS,commitId=$COMMIT_ID
+              echo $COMMIT_ID
+            #  aws deploy create-deployment   --application-name CodeDeployGitHubDemo-App   --deployment-config-name CodeDeployDefault.OneAtATime   --deployment-group-name CodeDeployGitHubDemo-DepGrp   --description "My GitHub deployment demo"   --github-location repository=Satvik-Ambati/CodeDeployAWS,commitId=$COMMIT_ID
       # - run:
       #     name: Deployment
       #     command: |

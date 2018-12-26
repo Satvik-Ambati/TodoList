@@ -11,6 +11,7 @@ jobs:
           command: |
               sudo npm install -g n
               sudo n stable
+              pwd
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:

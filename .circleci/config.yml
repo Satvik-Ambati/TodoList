@@ -54,7 +54,9 @@ jobs:
       - run:
           name: Checking Deployment Group
           command: aws deploy get-deployment-group --application-name CodeDeployGitHubDemo-App --deployment-group-name CodeDeployGitHubDemo-DepGrp     
-      
+      - run:
+          name: Deployment to S3 bucket
+          command: aws s3 sync . s3://todolist-bucket-demo --delete      
 
 
 

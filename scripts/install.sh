@@ -9,7 +9,6 @@
 
 # yum -y update
 # curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-# . ~/.nvm/nvm.sh
 # nvm --version
 
 # nvm install node
@@ -39,8 +38,15 @@
 # whereis node
 # whereis npm
 
-# curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
-
-
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install 4.4.5
+node -e "console.log('Running Node.js ' + process.version)"
+node --version
+npm --version
+sudo ln -s /usr/local/bin/npm /usr/bin/npm
+npm install -g forever
 #  npm install -g forever
 echo "Hi"
+
+

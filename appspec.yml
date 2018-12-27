@@ -30,6 +30,8 @@ files:
 #       range:
 #     type:
 
+
+
 hooks:
 
 
@@ -65,9 +67,9 @@ hooks:
 #   in the script specified in "location".
 
 
-  # BeforeInstall:
-  #   - location: scripts/install.sh 
-  #     runas: root
+  BeforeInstall:
+    - location: scripts/install.sh 
+      runas: root
   #   - location: scripts/start.sh   
   #     runas: root 
 

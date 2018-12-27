@@ -45,7 +45,8 @@ node -e "console.log('Running Node.js ' + process.version)"
 node --version
 npm --version
 sudo ln -s /usr/local/bin/npm /usr/bin/npm
-npm install -g forever
+cd /usr/local/projects/source
+npm install forever
 #  npm install -g forever
 echo "Hi"
 

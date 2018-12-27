@@ -1,2 +1,3 @@
 #!/bin/bash
-forever start /usr/local/projects/source/app.js
+cd /usr/local/projects/source
+forever start app.js

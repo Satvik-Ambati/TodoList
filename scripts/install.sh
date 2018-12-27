@@ -48,7 +48,6 @@ sudo ln -s /usr/local/bin/npm /usr/bin/npm
 cd /usr/local/projects/source
 npm install -g forever
 whereis forever
-#  npm install -g forever
 
 
 

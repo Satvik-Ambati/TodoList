@@ -1,2 +1,2 @@
 #!/bin/bash
-forever start /usr/local/projects/source/app.js --flags --here;
+forever start /usr/local/projects/source/app.js 

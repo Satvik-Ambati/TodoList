@@ -70,7 +70,9 @@ jobs:
           command: cd "/home/circleci/project" && zip -rq "/tmp/first.zip" .
       - run:
           name: Copying bundle to S3
-          command: aws s3 cp --sse AES256 "/tmp/first.zip" "s3://todolist-bucket-demo/first.zip"
+          command: |
+              aws s3 rm s3://todolist-bucket-demo/first.zip
+              aws s3 cp --sse AES256 "/tmp/first.zip" "s3://todolist-bucket-demo/first.zip"
       # - run:
       #     name: Limiting Deploy Revisions per Bucket/Key
       #     command: |

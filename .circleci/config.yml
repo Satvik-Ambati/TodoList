@@ -28,11 +28,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules    
-      # - run:
-      #     name: start connection and test
-      #     command: |
-      #         set -e
-      #         node app
+      
       - run:
           name: setup connection
           command: forever start app.js

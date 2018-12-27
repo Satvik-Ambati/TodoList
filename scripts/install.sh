@@ -46,7 +46,7 @@ node --version
 npm --version
 sudo ln -s /usr/local/bin/npm /usr/bin/npm
 cd /usr/local/projects/source
-npm install forever
+npm install -g forever
 whereis forever
 #  npm install -g forever
 

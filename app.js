@@ -41,6 +41,3 @@ console.log('You are listening to port 3000');
 //     	//process.exit(1);
 //     }
 // });
-
-
-//httpServer.close();

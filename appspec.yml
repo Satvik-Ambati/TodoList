@@ -12,16 +12,6 @@ version: 0.0
 # Specify "os: windows" if this revision targets Windows Server instances.
 # (You cannot specify both "os: linux" and "os: windows".)
 os: linux 
-# os: windows
-# During the Install deployment lifecycle event (which occurs between the 
-#   BeforeInstall and AfterInstall events), copy the specified files 
-#   in "source" starting from the root of the revision's file bundle 
-#   to "destination" on the Amazon EC2 instance.
-# Specify multiple "source" and "destination" pairs if you want to copy 
-#   from multiple sources or to multiple destinations.
-# If you are not copying any files to the Amazon EC2 instance, then remove the
-#   "files" section altogether. A blank or incomplete "files" section
-#   may cause associated deployments to fail.
 files:
   - source: /
     destination: /usr/local/projects/source
@@ -51,13 +41,6 @@ files:
 #       type:
 #       range:
 #     type:
-
-
-#       -
-# If you are not running any commands on the Amazon EC2 instance, then remove 
-#   the "hooks" section altogether. A blank or incomplete "hooks" section
-#   may cause associated deployments to fail.
-
 
 hooks:
 
@@ -96,7 +79,7 @@ hooks:
     - location: scripts/install.sh 
       runas: root
     # - location: scripts/start.sh   
-    #   runas: root
+    #   runas: root 
 
   #   - location: scripts/start.sh
   #     timeout: 300

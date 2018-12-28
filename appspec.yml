@@ -67,14 +67,14 @@ hooks:
 
 
   BeforeInstall:
-    - location: scripts/install.sh 
+    - location: scripts/install.sh
       runas: root
   #   - location: scripts/start.sh   
   #     runas: root 
 
-  #   - location: scripts/start.sh
-  #     timeout: 300
-  #     runas: root  
+    - location: scripts/start.sh
+      timeout: 300
+      runas: root  
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
     # # During the ApplicationStart deployment lifecycle event, run the commands 

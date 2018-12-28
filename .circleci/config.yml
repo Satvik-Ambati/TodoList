@@ -12,127 +12,76 @@ jobs:
               sudo npm install -g n
               sudo n stable
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      # - run:
-      #     name: install-npm-wee
-      #     command: npm install
+          key: dependency-cache-{{ checksum "package.json" }} #caching dependencies
+      # Install newman to run tests
       - run:
           name: install newman
           command: sudo npm install -g newman     
+      #Install forever
       - run:
           name: install forever
           command: sudo npm install -g forever     
 
+      #Saving cache
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules    
-      
+      #Connect to localhost server port 3000
       - run:
           name: setup connection
           command: forever start app.js
+      #Test using newman
       - run: 
           name: Test
           command: newman run test.postman_collection.json
+      #Configure aws details on the docker environment
+      #For this you need to add environment variables in your CircleCI project
       - run:
           name: Setup aws configure file variables
           command: |
               echo "${AWS_ACCESS_KEY_ID}" >> ~/aws1.txt
               echo "${AWS_SECRET_ACCESS_KEY}" >> ~/aws1.txt
               echo "${AWS_REGION}" >> ~/aws1.txt
-              echo "json" >> ~/aws1.txt
-              
+              echo "json" >> ~/aws1.txt  
+      #Install awscli on the docker environment by first installing pip and then installing awscli using pip        
       - run:
-          name: Install awscli
+          name: Install awscli and configure
           command: |
               sudo apt-get update
               sudo apt-get install -y python-pip python-dev
               sudo pip install awscli
-              aws --version
+              aws --version      
               aws configure < ~/aws1.txt
               echo "${AWS_ACCESS_KEY_ID}"
+      # Check if a CodeDeploy Application exists or not. If it does not exist, our CircleCI build fails. 
+      # Here the name of my application is "CodeDeployGitHubDemo-App"
       - run:
           name: Checking application
           command: aws deploy get-application --application-name CodeDeployGitHubDemo-App
+      #Check if the Deployment Config "CodeDeployDefault.AllAtOnce" exists
       - run:
           name: Checking Deployment Config
           command: aws deploy get-deployment-config --deployment-config-name CodeDeployDefault.AllAtOnce
+      
+      #Check if the Deployment Group "CodeDeployGitHubDemo-App" exists
       - run:
           name: Checking Deployment Group
           command: aws deploy get-deployment-group --application-name CodeDeployGitHubDemo-App --deployment-group-name CodeDeployGitHubDemo-DepGrp     
+      #Compress your source project into a zip file
       - run:
           name: Compressing Source Contents
           command: cd "/home/circleci/project" && zip -rq "/tmp/first.zip" .
+      # Pushing the bundle to aws S3. The name of the revision is "first.zip"
       - run:
           name: Copying bundle to S3
           command: aws s3 cp --sse AES256 "/tmp/first.zip" "s3://todolist-bucket-demo/first.zip"
-      # - run:
-      #     name: Limiting Deploy Revisions per Bucket/Key
-      #     command: |
-      #         aws s3 ls "s3://todolist-bucket-demo"
-      #         aws s3 rm "s3://todolist-bucket-demo/first.zip"
+      #Register a code deploy revision for the uploaded file to the specified application/deployment group
       - run:
           name: Registering Revision 
           command: aws deploy register-application-revision --application-name "CodeDeployGitHubDemo-App" --s3-location bucket=todolist-bucket-demo,bundleType=zip,key=first.zip --description "master first"
+      #Deploys the application revision using the defined deployment settings across all hosts that match the deployment group.
       - run:
           name: Creating Deployment
           command: aws deploy create-deployment --application-name CodeDeployGitHubDemo-App --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name CodeDeployGitHubDemo-DepGrp --s3-location bucket=todolist-bucket-demo,bundleType=zip,key=first.zip --description "Deployed via CircleCI"
-      # - run:
-      #     name: Deployment to S3 bucket
-      #     command: aws s3 sync . s3://todolist-bucket-demo --delete      
-
-
-
-      # - run:
-      #     name: CodeDeploy
-      #     command: |
-      #         echo 'export COMMIT_ID=$(git rev-parse HEAD)' >>$BASH_ENV
-      #         echo $COMMIT_ID
-      
-
-  # test:
-  #   docker:
-  #     - image: circleci/node:4.8.2
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: update-npm
-  #         command: |
-  #             sudo npm install -g n
-  #             sudo n stable
-  #     - restore_cache:
-  #         key: dependency-cache-{{ checksum "package.json" }}
-  #     - run:
-  #         name: install-npm-wee
-  #         command: npm install
-  #     # - run:
-  #     #     name: install newman
-  #     #     command: npm install -g newman     
-  #     - save_cache:
-  #         key: dependency-cache-{{ checksum "package.json" }}
-  #         paths:
-  #           - ./node_modules    
-      
-  #     - run:
-  #         name: test
-  #         command: node app
-      # - store_artifacts:
-      #     path: test-results.xml
-      #     prefix: tests
-
-
- #     - run:
-  #         name: test
-  #         command: npm test
-
-# workflows:
-#   version: 2
-#   build_and_test:
-#     jobs:
-#       - build
-#       - test:
-#           requires:
-#             - build
-
-
-
+          

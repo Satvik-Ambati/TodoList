@@ -1,22 +1,21 @@
-version: 2
+version: 2  # Version of CircleCI being used
 jobs:
-  build:
-    docker:
-      - image: circleci/node:4.8.2 
-    #  - image: mongo:3.4.4
+  build: #Name of the job
+    docker: 
+      - image: circleci/node:4.8.2  #Docker image being used
+      # Used node docker image as it has node dependencies pre-installed
     steps:
-      - checkout 
+      - checkout #This step checks out your code from your git repo to the Docker environment
       - run:
-          name: update-npm
+          name: update-npm #Update your npm to the latest version
           command: |
               sudo npm install -g n
               sudo n stable
-              pwd
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
+      # - run:
+      #     name: install-npm-wee
+      #     command: npm install
       - run:
           name: install newman
           command: sudo npm install -g newman     
